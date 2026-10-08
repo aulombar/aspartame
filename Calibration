@@ -1,26 +1,15 @@
-concentration <- c(0.5, 1, 2, 4, 6, 8, 10)
-absorbance <- c(0.173, 0.232, 0.580, 1.163, 1.754, 2.241, 2.609)
-cal_model <- lm(absorbance ~ concentration)
+absorbance_cal <- c(0.173, 0.232, 0.580, 1.163, 1.754, 2.241, 2.609)
+concentration_cal <- c(0.5, 1, 2, 4, 6, 8, 10)
 
-plot(
-	concentration, absorbance,
-	type = "b", 
-	lty = "dashed", 
-	pch = 16, 
-	col = "darkblue", 
-	main = "Concentration Curve", 
-	xlab = "Concentration mM", 
-	ylab = "Absorbance", las = 1)
+plot(x = concentration_cal, y = absorbance_cal,
+	main = "Calibration Curve",
+	xlab = "Concentration (mM)",
+	ylab = "Absorbance",
+	pch = 10,
+	col = "black",
+	cex = 1,)
 
-abline(
-	cal_model, 
+model <- lm(absorbance_cal ~ concentration_cal)
+abline(model, 
 	col = "red", 
-	lwd = 2, 
-	lty = "solid")
-
-legend("topleft", 
-	legend = c("Concentration Data", "Linear Regression"), 
-	col = c("darkblue", "red"), 
-	lty = c("dashed", "solid"), 
-	pch = c(16, NA), 
-	lwd = c(1, 2))
+	lwd=2)
